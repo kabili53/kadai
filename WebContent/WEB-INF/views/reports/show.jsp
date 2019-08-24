@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<% Integer name = (Integer)application.getAttribute("count"); %>
 <c:import url="/WEB-INF/views/layout/app.jsp">
     <c:param name="content">
         <c:choose>
@@ -37,7 +38,8 @@
                         </tr>
                     </tbody>
                 </table>
-
+               <form><input type="hidden" name="count" value="1" /></form>
+                <p><a href="${pageContext.request.contextPath}/reports/count">いいねする</a>（<%= name %>）</p>
                 <c:if test="${sessionScope.login_employee.id == report.employee.id}">
                     <p><a href="<c:url value='/reports/edit?id=${report.id}' />">この日報を編集する</a></p>
                 </c:if>
